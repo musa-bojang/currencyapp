@@ -1,24 +1,59 @@
-// import "../mystyles.css";
+import React from "react";
 
-function About() {
-  return(
-    <>
-<div>About Page</div>;
-<div class="bg-white dark:bg-gray-800 rounded-lg px-6 py-8 ring shadow-xl ring-gray-900/5">
-  <div>
-    <span class="inline-flex items-center justify-center rounded-md bg-indigo-500 p-2 shadow-lg">
-      <svg class="h-6 w-6 stroke-white">
-        
-      </svg>
-    </span>
-  </div>
-  <h3 class="text-gray-900 dark:text-white mt-5 text-base font-medium tracking-tight ">Writes upside-down</h3>
-  <p class="text-gray-500 dark:text-gray-400 mt-2 text-sm ">
-    The Zero Gravity Pen can be used to write in any orientation, including upside-down. It even works in outer space.
-  </p>
-</div>
-</>
-  )
-}   
+const About = () => {
+  return (
+    <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center px-6 py-16">
+      <div className="max-w-3xl text-center">
+        <h1 className="text-4xl font-bold text-gray-800 mb-6">
+          About SAL XCHANGES
+        </h1>
+        <p className="text-lg text-gray-600 mb-8">
+          SAL XCHANGES is a simple and user-friendly currency exchange
+          application designed to help you convert and track exchange rates with
+          ease. Whether you're a traveler, freelancer, or business owner, our
+          goal is to make currency conversion fast, reliable, and accurate.
+        </p>
+
+        <div className="bg-white rounded-2xl shadow-md p-8">
+          <h2 className="text-2xl font-semibold text-gray-800 mb-4">
+            Our Mission
+          </h2>
+          <p className="text-gray-600 mb-6">
+            We aim to provide a transparent, secure, and efficient platform for
+            everyone who deals with multiple currencies. SAL XCHANGES combines
+            real-time exchange data with an intuitive design to make currency
+            conversion effortless.
+          </p>
+
+          <h2 className="text-2xl font-semibold text-gray-800 mb-4">
+            Why Choose Us
+          </h2>
+          <ul className="list-disc list-inside text-gray-600 space-y-2">
+            <li>💱 Real-time and accurate exchange rate updates</li>
+            <li>⚡ Fast and intuitive conversion interface</li>
+            <li>🔒 Secure and trustworthy data sources</li>
+            <li>📈 Easy-to-read historical exchange graphs</li>
+          </ul>
+        </div>
+
+        <div className="mt-10">
+          <h2 className="text-2xl font-semibold text-gray-800 mb-4">
+            Get in Touch
+          </h2>
+          <p className="text-gray-600 mb-6">
+            Have feedback or ideas? We’d love to hear from you! Your input helps
+            us improve and build a better experience for all users.
+          </p>
+          <a
+            href="/"
+            className="inline-block bg-blue-600 text-white font-medium py-3 px-6 rounded-xl hover:bg-blue-700 transition"
+          >
+            Back to Home
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default About;

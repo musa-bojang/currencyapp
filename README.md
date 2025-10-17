@@ -33,3 +33,6 @@ We start working on the menu.
 
 ## 14/10/2025
 I have installed recharts and page the home page and the graph page
+
+## 17/10/2025 3pm
+Updated the about page
