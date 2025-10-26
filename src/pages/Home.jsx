@@ -1,22 +1,46 @@
 import React, { useState } from "react";
+import { getExchangeRate } from "../services/currencyService";
 
 const Home = () => {
   const [amount, setAmount] = useState("");
   const [fromCurrency, setFromCurrency] = useState("USD");
   const [toCurrency, setToCurrency] = useState("EUR");
   const [result, setResult] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleConvert = () => {
+  // const handleConvert = () => {
+  //   if (!amount) return;
+  //   // For now, we’ll simulate the conversion — later you’ll replace this with real API call
+  //   let fakeRate = 0.92; // example: 1 USD = 0.92 EUR
+  //   if(fromCurrency === "EUR" && toCurrency === "GMD") {
+  //     fakeRate = 61.5; // example: 1 EUR = 61.5 GMD
+  //   } else if (fromCurrency === "USD" && toCurrency === "GMD") {
+  //     fakeRate = 56.5; // example: 1 USD = 56.5 GMD
+  //   }
+  //   const converted = (amount * fakeRate).toFixed(2);
+  //   setResult(`${amount} ${fromCurrency} = ${converted} ${toCurrency}`);
+  // };
+
+  const handleConvert = async () => {
     if (!amount) return;
-    // For now, we’ll simulate the conversion — later you’ll replace this with real API call
-    let fakeRate = 0.92; // example: 1 USD = 0.92 EUR
-    if(fromCurrency === "EUR" && toCurrency === "GMD") {
-      fakeRate = 61.5; // example: 1 EUR = 61.5 GMD
-    } else if (fromCurrency === "USD" && toCurrency === "GMD") {
-      fakeRate = 56.5; // example: 1 USD = 56.5 GMD
+
+    try {
+      setLoading(true);
+      setError("");
+
+      const rate = await getExchangeRate(fromCurrency, toCurrency);
+      // simulate small delay (2 seconds)
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      // console.log("Fetched rate:", rate);
+      const converted = (amount * rate).toFixed(2);
+      setResult(`${amount} ${fromCurrency} = ${converted} ${toCurrency}`);
+      
+    } catch (err) {
+      setError("Failed to fetch exchange rate. Please try again.");
+    } finally {
+      setLoading(false);
     }
-    const converted = (amount * fakeRate).toFixed(2);
-    setResult(`${amount} ${fromCurrency} = ${converted} ${toCurrency}`);
   };
 
   return (
@@ -89,7 +113,8 @@ const Home = () => {
         >
           Convert
         </button>
-
+        {loading && <div className="text-gray-600">Converting...</div>}
+        {error && <div className="text-red-600">{error}</div>}
         {result && (
           <div className="mt-4 text-lg font-medium text-gray-800">
             {result}

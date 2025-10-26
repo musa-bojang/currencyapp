@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 const About = () => {
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center px-6 py-16">
@@ -44,12 +44,12 @@ const About = () => {
             Have feedback or ideas? We’d love to hear from you! Your input helps
             us improve and build a better experience for all users.
           </p>
-          <a
-            href="/"
+          <Link
+        to="/"
             className="inline-block bg-blue-600 text-white font-medium py-3 px-6 rounded-xl hover:bg-blue-700 transition"
           >
             Back to Home
-          </a>
+            </Link>
         </div>
       </div>
     </div>

@@ -1,5 +1,4 @@
-// src/services/currencyService.js
-const apiKey = "d891bce5402c002e721aebb1"; // replace with your real key from https://www.exchangerate-api.com/
+const apiKey = import.meta.env.VITE_EXCHANGE_API_KEY;
 
 // Fetch latest rates for converter
 export const fetchLatestRates = async (baseCurrency) => {
@@ -27,3 +26,28 @@ export const fetchHistoricalRates = async (base, target) => {
 
   return rates;
 };
+
+export const getExchangeRate = async (fromCurrency, toCurrency) => {
+  try {
+    const response = await fetch(
+      `https://v6.exchangerate-api.com/v6/${apiKey}/latest/${fromCurrency}`
+    );
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch exchange rates");
+    }
+
+    const data = await response.json();
+    const rate = data.conversion_rates[toCurrency];
+
+    if (!rate) {
+      throw new Error("Currency not supported");
+    }
+
+    return rate;
+  } catch (error) {
+    console.error("Error fetching exchange rate:", error);
+    throw error;
+  }
+};
+
